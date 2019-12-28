@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+// import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-editor',
@@ -8,25 +9,39 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProfileEditorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
   }
 
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
-    })
+  //Using FormBuilder
+  profileForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    address: this.fb.group({
+      state: [''],
+      city: [''],
+      street: [''],
+      zip:['']
+    }),
   });
 
-  // onSubmit() {
-  //   console.log(this.profileForm.value);
-  // }
+  
+
+  // profileForm = new FormGroup({
+  //   firstName: new FormControl(''),
+  //   lastName: new FormControl(''),
+  //   address: new FormGroup({
+  //     street: new FormControl(''),
+  //     city: new FormControl(''),
+  //     state: new FormControl(''),
+  //     zip: new FormControl('')
+  //   })
+  // });
+
+  onSubmit() {
+    console.log(this.profileForm.value);
+  }
 
   updateProfile() {
     this.profileForm.patchValue({
