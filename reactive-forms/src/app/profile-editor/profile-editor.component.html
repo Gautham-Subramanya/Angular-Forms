@@ -1,0 +1,35 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label>
+      First Name
+    <input type="text" formControlName="firstName">
+  </label>
+
+    <label>
+      Last Name
+    <input type="text" formControlName="lastName">
+  </label>
+
+    <form formGroupName="address">
+        <h3>Address</h3>
+        <label>
+        Street:
+        <input type="street" formControlName="street">
+      </label>
+        <label>
+          City:
+          <input type="city" formControlName="city">
+        </label>
+        <label>
+            State:
+            <input type="state" formControlName="state">
+          </label>
+        <label>
+              Zip:
+              <input type="zip" formControlName="zip">
+            </label>
+    </form>
+</form>
+
+<!-- <button type="submit" [disabled]=!profileForm.valid ">Submit</button> -->
+
+<button (click)="updateProfile() ">Update Profile</button>
